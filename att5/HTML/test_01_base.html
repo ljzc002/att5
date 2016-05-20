@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>基本的数据查询</title>
+    <link rel="stylesheet" type="text/css" href="../CSS/testtab.css"/><!--主样式表-->
+    <link rel="stylesheet" type="text/css" href="../CSS/easyui/easyui.css"/><!--如果要使用easyui的日历控件要加载这两个样式表-->
+    <link rel="stylesheet" type="text/css" href="../CSS/easyui/icon.css"/>
+</head>
+<body>
+<div id="all_base" style="width: 100%">
+    <!--控制台-->
+    <div class="div_cook2" id="div_ssbup" style="height: 80px;width:100%">
+        <button onclick="CreateTestData()" style="width: 150px;margin-top: 10px">生成测试数据</button>
+        <button onclick="TextExport()" style="width: 100px;margin-top: 10px">数据集导出</button>
+        <button onclick="ImportCol()" style="width: 100px;margin-top: 10px">数据集导入</button>
+    </div>
+    <!--表-->
+    <div id="div_tab" style="float: left;position: relative;width:4000px;overflow-x: hidden">
+
+    </div>
+    <!--把弹出项作为隐藏的小模块，可以使用css来直接设置弹出项的样式-->
+    <div id="div_hidden" style="display: none">
+        <div id="div_mod1">
+            <div class="div_inmod1" style="width: 100%;height: 100%;margin: 0px;border: 1px solid;padding: 0px;float: left;line-height: 20px">
+                <div class="div_inmod_head" style="width: 100%;height: 20px;background-color: #E0ECFF;margin:0;border: 0;padding:0;border-bottom: 1px solid">
+                    <BUTTON style='float:right;aposition:static; width: 14px;height: 14px; margin: 0;margin-top: 2px;margin-right:2px;padding: 0;background: url(../IMAGE/close.png) no-repeat;border: 0px;vertical-align:top' onclick="delete_div('div_ImportCol');" type=submit></BUTTON>
+                </div>
+                <input value="导入文本文件" type="file" onchange="ImportCol2()" id="btn_ImportCol">
+            </div>
+        </div>
+    </div>
+</div>
+<!--底部控制台-->
+<div class="btnBar" id="btnBar" style="float: left;">
+    <ul class="left">
+
+        <li>
+            <!--p class="p_title">欢迎<span id="s_username">...</span>使用本程序</p-->
+        </li>
+        <li class="floatRight borderLeft">
+            <ul class="fileOper">
+                <li><a class="ICOhover" onclick="att5.ChangePage('0','div_tab','tab_data',0,0,arr_user,30)" ><span title="首页" class="begin"></span></a></li>
+                <li><a class="ICOhover" onclick="att5.ChangePage('-','div_tab','tab_data',0,0,arr_user,30)" ><span title="上一页" class="pre"></span></a></li>
+                <li><a class="ICOhover" onclick="att5.ChangePage('+','div_tab','tab_data',0,0,arr_user,30)" ><span title="下一页" class="next"></span></a></li>
+                <li><a class="ICOhover" onclick="att5.ChangePage('9999','div_tab','tab_data',0,0,arr_user,30)" ><span title="尾页" class="end"></span></a></li>
+            </ul>
+        </li>
+        <li class="floatRight">  <div style="margin: 5px 4px 3px; float: left; display: inline-block;">共<span id="t_page_span">1</span>页/第<span id="c_page_span">1</span>页&nbsp;&nbsp;</div></li>
+    </ul>
+</div>
+</body>
+<script src="../JS/PAGE/test_01_base.js"></script>
+<script src="../JS/MYLIB/Events.js"></script>
+<script src="../JS/MYLIB/FileText.js"></script>
+<script src="../JS/MYLIB/Table2.js"></script>
+<script src="../JS/MYLIB/View.js"></script>
+<script src="../JS/LIB/webgl-utils.js"></script>
+<script src="../JS/LIB/jquery-1.11.3.min.js"></script>
+<script src="../JS/LIB/jquery.easyui.min.js"></script>
+<script src="../JS/LIB/easyui-lang-zh_CN.js"></script>
+<script>
+    var UrlHead="http://localhost:8081/DISCOVERY/";
+    window.onresize=Resize_Pllsselect;
+    //保存从session里取来的用户身份信息，这个页面没有前后台交互
+    var czyxm="";
+    var dwid="";
+    var lxfs="";
+    var czylx="";
+    var gzrq="";
+    var sj="";
+    var dwmc="";
+    var dwfzrmc="";
+    var dwfzrlxfs="";
+    var dwfzrsj="";
+    var czyid="";
+
+    var arr_user=[];//为了顺利导出Excel使用这个全局变量
+    var int_height=120;//用来辅助调整div_tab的高度
+    var zIndex = 100;//拖拽库所使用的全局变量，规定半透明div的层次
+
+    function Resize_Pllsselect()
+    {
+        var size=window_size();
+        document.getElementById("all_base").style.height=((size.height-90)+"px");
+        document.getElementById("div_tab").style.height=((size.height-int_height)+"px");
+    }
+    window.onload=function()
+    {
+        Resize_Pllsselect();
+        //CheckSession();
+    }
+</script>
+</html>

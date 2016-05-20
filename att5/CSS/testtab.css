@@ -1,0 +1,328 @@
+body{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    text-align: center;
+    overflow: hidden;
+    min-width: 600px;
+    font-family: verdana,arial,sans-serif;
+    font-size: 12px;
+}
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+li{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+ul li {
+    float: left;
+}
+button{
+    cursor: pointer;
+}
+a:link
+{
+    text-decoration: none;
+}
+#all_base
+{
+    border:0px;
+    margin: 0px;
+    top:0px;
+    left:0px;
+    bottom:0px;
+    width:1360px;
+    /*min-width: 1360px;*/
+    height:100%;
+    background: #ffffff;
+    overflow: auto;
+}
+#div_ssbup
+{
+    /*border: 1px solid;*/
+    margin:0px;
+    height: 480px;
+    width: 100%;
+    font-family: verdana,arial,sans-serif;
+    font-size: 12px;
+    /*overflow-x: scroll;*/
+}
+.div_xline{
+    float: left;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 1280px;
+    height: 0px;
+    border-bottom: dashed 1px lightBlue;
+}
+#div_ssbup select{
+    width:120px;
+    border: solid 1px #020202;
+    float: left;
+}
+#div_ssbup input{
+    /*width:98px;*/
+    /*border: solid 1px #020202; #95b8e7*/
+    float: left;
+}
+.str_number{
+    border: solid 1px #020202;
+    width: 60px;
+}
+.str_normal{
+    border: solid 1px #020202;
+    width: 120px;
+}
+.str_date{
+    width: 120px;
+}
+.str_text{
+    border: solid 1px #020202;
+    width:220px ;
+}
+#div_ssbup ul{
+    float: left;
+    margin-top: 15px;
+    margin-left: 5px;
+}
+#div_ssbup li{
+    float: left;
+    /*margin-top: 10px;*/
+    margin-left: 5px;
+    margin-right: 10px;
+    color:red;
+}
+#div_ssbup span{
+    width: 120px;
+    float: left;
+    text-align: right;
+    color: darkred;
+    padding-right: 5px;
+}
+#div_ssbup button{
+    float: left;
+    margin-right: 5px;
+    margin-left: 5px;
+    width: 52px;
+    height: 20px;
+    text-align: center;
+    background-color: #d6e7ef;
+    border: solid 1px #020202;
+}
+.btnBar {
+    width: 100%;
+    max-width: 4000px;
+    height: 30px;
+    background: url(../IMAGE/TABLE/btnBarBg.jpg) repeat-x #C1D8FA;
+    border-bottom: #86B6DB solid 1px;
+    border-top: #86B6DB solid 1px;
+    font-size: 12px;
+    font-family: Verdana, Geneva, sans-serif;
+}
+.floatRight {
+    float: right;
+}
+.borderLeft {
+    border-left: #728DB4 solid 1px;
+}
+.left ul li {
+    width: 24px;
+    height: 23px;
+    margin: 2px 2px;
+    padding-bottom: 2px;
+}
+.left ul {
+    padding: 0px 5px;
+}
+a.ICOhover {
+    width: 24px;
+    height: 23px;
+    display: inline-block;
+    border: 0px;
+
+}
+a.ICOhover:hover {
+    background: url(../IMAGE/TABLE/hoverBg.jpg) repeat-x;
+    border: #B8AE7D solid 1px;
+    margin-left: -2px;
+    margin-top: -2px;
+}
+ul.fileOper li span {
+    width: 16px;
+    height: 16px;
+    margin: 4px 4px 3px 4px;
+    display: inline-block;
+}
+.begin {
+    width: 14px;
+    background: url(../IMAGE/TABLE/ViewReport-ICO.gif) -315px -126px no-repeat;
+}
+.pre {
+    width: 14px;
+    background: url(../IMAGE/TABLE/ViewReport-ICO.gif) -346px -126px no-repeat;
+}
+.next {
+    width: 14px;
+    background: url(../IMAGE/TABLE/ViewReport-ICO.gif) -374px -126px no-repeat;
+}
+.end {
+    width: 14px;
+    background: url(../IMAGE/TABLE/ViewReport-ICO.gif) -402px -126px no-repeat;
+}
+.p_title{
+    margin-left: 5px;
+    margin-top: 5px;
+    font-size: 16px;
+    font-weight: 700;
+    color:#2C8BE2;
+}
+#s_username{
+    color:#171717;
+    font-size: 12px;
+    font-family: Verdana, Geneva, sans-serif;
+}
+#s_username:hover{
+    cursor: pointer;
+}
+.div_cook2{
+    margin-top: 5px;
+    margin-left: 0px;
+    margin-right: auto;
+    width: 100%;
+    height: 35px;
+    font-family: 宋体;
+    font-size: 12px;
+    float: left;
+}
+td input{
+    height: 100%;
+    width: 100%;
+    border:0;
+    text-align: center;
+    background-color: inherit;
+}
+#div_tab td{
+    text-align: center;
+    /*border: solid 1px #020202;*/
+    border-right:solid 1px #020202;
+    /*border-bottom: solid 1px #020202;*/
+    line-height: 16px;
+    font-size: 13px;
+    height: 20px;
+    padding: 1px;
+    background-color: inherit;
+    word-break: keep-all;
+}
+#div_tab th{
+    text-align: center;
+    /*border: solid 1px #020202;*/
+    line-height: 16px;
+    font-size: 13px;
+    height: 36px;
+    padding: 1px;
+    text-align: center;
+    border-right: solid 1px #020202;
+    border-bottom: solid 1px #020202;
+    word-break: keep-all;
+    white-space:nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+#div_tab table{
+    float: left;
+    width: auto;
+    border-right-width:0px;
+    border: solid 1px #020202;
+    table-layout: fixed;
+}
+#div_tab tr{
+
+    width: auto;
+    vertical-align: middle;
+    /*border: solid 1px #020202;*/
+    padding: 1px;
+}
+td a{
+    cursor: pointer;
+}
+td button{
+    cursor: pointer;
+}
+
+.div_mask{
+    height: 100%;
+    width: 100%;
+    display:block;
+    z-index: 98;
+    background: #cccccc;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    filter: alpha(opacity=40);
+    opacity: 0.40;
+    overflow: hidden;
+}
+.div_mask2{
+    display:block;
+    left: 0px;
+    top: 0px;
+    /*filter: alpha(opacity=50);
+    opacity: 0.50;*/
+    overflow: hidden;
+    position: absolute;
+    float: left;
+    overflow-x: hidden
+}
+table{
+    border-spacing:0;
+}
+.div_mask2 td{
+    text-align: center;
+    /*border: solid 1px #020202;*/
+    border-right:solid 1px #020202;
+    /*border-bottom: solid 1px #020202;*/
+    line-height: 16px;
+    font-size: 13px;
+    height: 20px;
+    padding: 1px;
+    background-color: inherit;
+    word-break: keep-all;
+}
+.div_mask2 th{
+    text-align: center;
+    /*border: solid 1px #020202;*/
+    line-height: 16px;
+    font-size: 13px;
+    height: 36px;
+    padding: 1px;
+    text-align: center;
+    border-right: solid 1px #020202;
+    border-bottom: solid 1px #020202;
+    word-break: keep-all;
+    white-space:nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.div_mask2 table{
+    float: left;
+    width: auto;
+    border-right-width:0px;
+    border: solid 1px #020202;
+    table-layout: fixed;
+    position: absolute;
+
+}
+.div_mask2 tr {
+
+    width: auto;
+    vertical-align: middle;
+    /*border: solid 1px #020202;*/
+    padding: 1px;
+}
+
