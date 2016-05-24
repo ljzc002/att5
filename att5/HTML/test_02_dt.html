@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>动态选择表列、弹出项、嵌入小模块</title>
+    <link rel="stylesheet" type="text/css" href="../CSS/testtab.css"/>
+    <link rel="stylesheet" type="text/css" href="../CSS/easyui/easyui.css"/>
+    <link rel="stylesheet" type="text/css" href="../CSS/easyui/icon.css"/>
+</head>
+<body>
+    <div id="all_base" style="width: 100%">
+        <div class="div_cook2" id="div_ssbup" style="height: 140px;width:100%">
+            <ul style="width: 100%;margin-left: 0px">
+                <li>
+                    <span>日期1：</span>
+                    <input class="easyui-datebox" data-options="sharedCalendar:'#cc'" style="border: 0px" tabindex="3" id="str_sqzxqsrq">
+                </li>
+                <li>
+                    <span>日期2：</span>
+                    <input class="easyui-datebox" data-options="sharedCalendar:'#cc'"  style="border: 0px" tabindex="4" id="str_sqzxjzrq">
+                </li>
+                <div id="cc" class="easyui-calendar"></div>
+                <li style="float: right"><button title="表列过多会超过excel合并单元格能力而导致报错" onclick="ExportAll()" style="width: 100px" disabled class="btn_afterget">完全导出</button></li>
+                <li style="float: right"><button onclick="GetData()" style="width: 100px">提取数据集</button></li>
+                <li><span id="str_note" style="width: 200px">欢迎使用动态表列查询功能</span></li>
+            </ul>
+            <div class="div_xline"></div>
+            <ul style="width: 100%;margin-left: 0px">
+                <li><button onclick="ChooseCol()" style="width: 100px" disabled  class="btn_afterget">选择表列</button></li>
+                <li><button onclick="ImportCol()" style="width: 100px" disabled class="btn_afterget">导入表列</button></li>
+                <li><button onclick="ExportCol()" style="width: 100px" disabled class="btn_afterget">导出表列</button></li>
+                <li><button onclick="ExportTab()" style="width: 100px" disabled class="btn_afterget">表格导出</button></li>
+                <li style="float: right"><button onclick="HiddeHead()"  style="width: 100px">隐藏条件</button></li>
+            </ul>
+        </div>
+        <div id="div_tab" style="float: left;position: relative;width:4000px;overflow-x: hidden">
+
+        </div>
+        <div id="div_hidden" style="display: none">
+            <div id="div_mod1">
+                <div class="div_inmod1" style="width: 100%;height: 100%;margin: 0px;border: 1px solid;padding: 0px;float: left;line-height: 20px">
+                    <div class="div_inmod_head" style="width: 100%;height: 20px;background-color: #E0ECFF;margin:0;border: 0;padding:0;border-bottom: 1px solid">
+                        <BUTTON style='float:right;aposition:static; width: 14px;height: 14px; margin: 0;margin-top: 2px;margin-right:2px;padding: 0;background: url(../IMAGE/button_ok.png) no-repeat;border: 0px;vertical-align:top' onclick="ChangeBZ();delete_div('div_bz');" type=submit></BUTTON>
+                    </div>
+                    <!--这个大小能够放下100个左右的汉字-->
+                    <textarea class="div_inmod1_content" style="width: 100%;height: 98px;overflow-x: hidden;margin:0;border: 0;padding:0">
+
+                    </textarea>
+                </div>
+            </div>
+            <div id="div_mod2">
+                <div class="div_inmod2" style="width: 1080px;height: 360px;margin: 0px;border: 1px solid;padding: 0px;float: left;line-height: 20px;display: inline-block">
+                    <div class="div_inmod_head" style="width: 100%;height: 20px;background-color: #E0ECFF;margin:0;border: 0;padding:0;border-bottom: 1px solid;cursor: move">
+                        <span style="float: left;margin-left: 10px">列选择</span>
+                        <BUTTON style='float:right;aposition:static; width: 14px;height: 14px; margin: 0;margin-top: 2px;margin-right:2px;padding: 0;background: url(../IMAGE/close.png) no-repeat;border: 0px;vertical-align:top;z-index: 101' onclick='btn_del2();' type=submit></BUTTON>
+                    </div>
+                    <div class="div_inmod2_content" style="width: 100%;height: 338px;overflow-x: hidden;margin:0;border: 0;padding:0">
+                        <div class="div_choose1" style="width: 300px;margin-left: 30px;margin-top: 20px;height: 300px;overflow-x: hidden;overflow-y: scroll;border: 1px solid #020202;float: left" ><!--左侧列出所有可选的数据列的汉字说明-->
+
+                        </div>
+                        <div class="div_choose2" style="width: 90px;margin-left: 10px;border: 0px;margin-top: 20px;height: 300px;overflow: hidden;float: left"><!--加入数据列和删除数据列的按钮-->
+                            <button style="margin-top: 60px" disabled onclick="divinsert()">添加</button><br>
+                            <button style="margin-top: 60px" disabled onclick="divdelete()">删除</button>
+                        </div>
+                        <div class="div_choose3" style="width: 500px;margin-left: 10px;margin-top: 20px;height: 300px;overflow-x: hidden;overflow-y: scroll;border: 1px solid #020202;float: left"><!--右边显示已有的数据列，并且可以给数据列设定列名-->
+
+                        </div>
+                        <div class="div_choose4" style="width: 90px;margin-left: 10px;border: 0px;margin-top: 20px;height: 300px;overflow: hidden;float: left"><!--调整选中的数据列的前后位置的按钮-->
+                            <button style="margin-top: 30px" disabled onclick="divfirst()">最前</button><br>
+                            <button style="margin-top: 30px" disabled onclick="divup()">前移</button><br>
+                            <button style="margin-top: 30px" disabled onclick="divdown()">后移</button><br>
+                            <button style="margin-top: 30px" disabled onclick="divlast()">最后</button><br>
+                            <button style="margin-top: 30px" disabled onclick="divchoose()">确定</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="div_mod3">
+                <div class="div_inmod3" style="width: 100%;height: 100%;margin: 0px;border: 1px solid;padding: 0px;float: left;line-height: 20px">
+                    <div class="div_inmod_head" style="width: 100%;height: 20px;background-color: #E0ECFF;margin:0;border: 0;padding:0;border-bottom: 1px solid">
+                        <BUTTON style='float:right;aposition:static; width: 14px;height: 14px; margin: 0;margin-top: 2px;margin-right:2px;padding: 0;background: url(../IMAGE/close.png) no-repeat;border: 0px;vertical-align:top' onclick="delete_div('div_ImportCol');" type=submit></BUTTON>
+                    </div>
+                    <input value="导入表列文件" type="file" onchange="ImportCol2()" id="btn_ImportCol">
+                </div>
+            </div>
+            <div id="div_mod4">
+                <div class="div_inmod4" style="width: 400px;height: 30px;margin: 0px;border: 0px;padding: 0px;float: left;line-height: 24px">
+                    <button style="width: 80px;height:24px;float: left;margin-left: 5px;margin-top: 2px" onclick="findrow()" class="btn_delete">按钮1</button>
+                    <button style="width: 80px;height:24px;float: left;margin-left: 15px;margin-top: 2px" onclick="findrow()" class="btn_confirm">按钮2</button>
+                    <button style="width: 80px;height:24px;float: left;margin-left: 15px;margin-top: 2px" onclick="findrow()" class="btn_confirm">按钮3</button>
+                    <button style="width: 80px;height:24px;float: left;margin-left: 15px;margin-top: 2px" onclick="findrow()" class="btn_confirm">按钮4</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="btnBar" id="btnBar" style="float: left;">
+        <ul class="left">
+
+            <li>
+                <!--p class="p_title">欢迎<span id="s_username">...</span>使用...系统</p-->
+            </li>
+            <li class="floatRight borderLeft">
+                <ul class="fileOper">
+                    <li><a class="ICOhover" onclick="att5.ChangePage('0','div_tab','tab_data',0,0,arr_data,30)" ><span title="首页" class="begin"></span></a></li>
+                    <li><a class="ICOhover" onclick="att5.ChangePage('-','div_tab','tab_data',0,0,arr_data,30)" ><span title="上一页" class="pre"></span></a></li>
+                    <li><a class="ICOhover" onclick="att5.ChangePage('+','div_tab','tab_data',0,0,arr_data,30)" ><span title="下一页" class="next"></span></a></li>
+                    <li><a class="ICOhover" onclick="att5.ChangePage('9999','div_tab','tab_data',0,0,arr_data,30)" ><span title="尾页" class="end"></span></a></li>
+                </ul>
+            </li>
+            <li class="floatRight">  <div style="margin: 5px 4px 3px; float: left; display: inline-block;">共<span id="t_page_span">1</span>页/第<span id="c_page_span">1</span>页&nbsp;&nbsp;</div></li>
+        </ul>
+    </div>
+</body>
+<script src="../JS/PAGE/test_02_dt.js"></script>
+<script src="../JS/MYLIB/Events.js"></script>
+<script src="../JS/MYLIB/FileText.js"></script>
+<script src="../JS/MYLIB/Table2.js"></script>
+<script src="../JS/MYLIB/View.js"></script>
+<script src="../JS/LIB/webgl-utils.js"></script>
+<script src="../JS/LIB/jquery-1.11.3.min.js"></script>
+<script src="../JS/LIB/jquery.easyui.min.js"></script>
+<script src="../JS/LIB/easyui-lang-zh_CN.js"></script>
+<script>
+    var UrlHead="http://localhost:8081/DISCOVERY/";
+    window.onresize=Resize_Pllsselect;
+    //保存从session里取来的用户身份信息，这个页面没有前后台交互
+    var czyxm="";
+    var dwid="";
+    var lxfs="";
+    var czylx="";
+    var gzrq="";
+    var sj="";
+    var dwmc="测试单位";
+    var dwfzrmc="";
+    var dwfzrlxfs="";
+    var dwfzrsj="";
+    var czyid="";
+
+    var arr_user=[];//为了顺利导出Excel使用这个全局变量
+    var int_height=120;//用来辅助调整div_tab的高度
+    var zIndex = 100;//拖拽库所使用的全局变量，规定半透明div的层次
+    var arr_th=[];//保存所有表头
+    var arr_col=[];//选择的列的信息
+    var arr_data=[];//选择之后的数据集
+    var current_obj;
+
+    function Resize_Pllsselect()
+    {
+        var size=window_size();
+        document.getElementById("all_base").style.height=((size.height-90)+"px");
+        document.getElementById("div_tab").style.height=((size.height-int_height)+"px");
+    }
+    window.onload=function()
+    {
+        Resize_Pllsselect();
+        //CheckSession();
+    }
+</script>
+</html>
